@@ -4,9 +4,25 @@
 # Constraints:
 # -2^31 <= x <= 2^31 - 1
 
-def reverse(x):
-    return 0
+def reverse(digit):
+    reversed_digit = 0
+    while digit > 0:
+        reversed_digit = reversed_digit*10 + digit % 10
+        digit = digit//10  # use //
+    if not(-2**31 <= reversed_digit <= 2**31 - 1):
+        return 0
+    else:
+        return reversed_digit
+
+
+def reverse_integer(x):
+    if not (-2**31 <= x <= 2**31 - 1):   # use **
+        return 0
+    if x < 0:
+        return -reverse(-x)
+    else:
+        return reverse(x)
 
 
 if __name__ == '__main__':
-    print(reverse(10))
+    print(reverse_integer(123))
