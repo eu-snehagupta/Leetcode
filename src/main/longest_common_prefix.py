@@ -27,7 +27,7 @@ def longest_common_prefix(string_array):
     common_prefix = ""
     current_index = 0
     max_index = shortest_word(string_array)
-    common = True
+    common = False
 
     while common and current_index in range(max_index):
         for i in range(1, len(string_array)):
