@@ -18,30 +18,56 @@
 
 
 def is_valid_parentheses(input_string):
-    if len(input_string) % 2 != 0:
+    if len(input_string) == 0 or len(input_string) % 2 != 0:
         return False
-    if input_string[0] == ")" or input_string[0] == "}" or input_string[0] == "]":
-        return False
+    is_valid = False
+    parentheses_queue = []
     for element in input_string:
-        open_bracket_index = input_string.index(element)
-        if element == "(":
-            close_bracket_index = input_string.index(")", open_bracket_index)
-            open_bracket = True
-        elif element == "{":
-            close_bracket_index = input_string.index("}", open_bracket_index)
-            open_bracket = True
-        elif element == "[":
-            close_bracket_index = input_string.index("]", open_bracket_index)
-            open_bracket = True
-        if open_bracket_index % 2 == 0 and open_bracket:
-            if close_bracket_index % 2 == 0:
-                return False
-        elif open_bracket_index % 2 != 0 and open_bracket:
-            if close_bracket_index % 2 != 0:
-                return False
+        if element in "({[":
+            parentheses_queue.append(element)
+            is_valid = False
         else:
-            return True
+            if len(parentheses_queue) == 0:
+                return False
+            if element == ")" and parentheses_queue.pop() == "(":
+                is_valid = True
+            elif element == "}" and parentheses_queue.pop() == "{":
+                is_valid = True
+            elif element == "]" and parentheses_queue.pop() == "[":
+                is_valid = True
+            else:
+                return False
+    if len(parentheses_queue) != 0:
+        return False
+    return is_valid
 
 
 if __name__ == '__main__':
-    print(is_valid_parentheses("()"))
+    if is_valid_parentheses("()") == True:
+        print("Pass:1")
+    else:
+        print("Fail:1")
+    if is_valid_parentheses("()[]{}") == True:
+        print("Pass:2")
+    else:
+        print("Fail:2")
+    if is_valid_parentheses("{[]}") == True:
+        print("Pass:3")
+    else:
+        print("Fail:3")
+    if is_valid_parentheses("(]") == False:
+        print("Pass:4")
+    else:
+        print("Fail:4")
+    if is_valid_parentheses("([)]") == False:
+        print("Pass:5")
+    else:
+        print("Fail:5")
+    if is_valid_parentheses("[({])}") == False:
+        print("Pass:6")
+    else:
+        print("Fail:6")
+    if is_valid_parentheses("[[[]") == False:
+        print("Pass:7")
+    else:
+        print("Fail:7")
