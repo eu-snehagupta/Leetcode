@@ -1,6 +1,27 @@
+# Merge two sorted linked lists and return it as a sorted list.
+# The list should be made by splicing together the nodes of the first two lists.
+#
+# Example 1:
+# Input: l1 = [1,2,4], l2 = [1,3,4]
+# Output: [1,1,2,3,4,4]
+#
+# Constraints:
+# The number of nodes in both lists is in the range [0, 50].
+# -100 <= Node.val <= 100
+# Both l1 and l2 are sorted in non-decreasing order.
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+
+# class Solution:
+#    def mergeTwoLists(self, l1: ListNode, l2: ListNode) -> ListNode:
+
 class Node:
-    def __init__(self, data):
-        self.data = data
+    def __init__(self, val):
+        self.val = val
         self.next = None
 
 
@@ -8,8 +29,8 @@ class LinkedList:
     def __init__(self):
         self.head = None
 
-    def append(self, new_data):
-        new_node = Node(new_data)
+    def append(self, new_val):
+        new_node = Node(new_val)
         if self.head is None:
             self.head = new_node
             return
@@ -24,12 +45,10 @@ class LinkedList:
             return
         current = self.head
         while current:
-            print(current.data, end=" ")
+            print(current.val, end=" ")
             current = current.next
 
 
-# class Solution:
-#    def mergeTwoLists(self, l1: ListNode, l2: ListNode) -> ListNode:
 def merge_two_linked_lists(list1, list2):
     if list1 is None and list2 is None:
         return
@@ -45,12 +64,12 @@ def merge_two_linked_lists(list1, list2):
 
     current = list1
     while current is not None:
-        merged_list.append(current.data)
+        merged_list.append(current.val)
         current = current.next
 
     current = list2
     while current is not None:
-        merged_list.append(current.data)
+        merged_list.append(current.val)
         current = current.next
 
     merged_list.sort()
@@ -58,7 +77,7 @@ def merge_two_linked_lists(list1, list2):
         merged_linked_list.append(elements)
 
     merged_linked_list.print_list()
-    print(merged_linked_list.head)
+    return merged_linked_list.head
 
 
 if __name__ == '__main__':
