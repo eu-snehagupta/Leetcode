@@ -38,9 +38,6 @@ class LinkedList:
     def delete_duplicates(self):
         if self.head is None:
             return
-        if self.head.next is None:
-            return self.head
-
         current = self.head
         while current.next is not None:
             if current.val == current.next.val:
