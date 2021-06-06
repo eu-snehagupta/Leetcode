@@ -1,8 +1,8 @@
 def add_digits(num):
-    while 1:
-        num = sum(map(int, str(num)))
-        if num < 10:
-            return num
+    if num < 10:
+        return num
+    else:
+        return add_digits(sum(map(int, str(num))))
 
 
 if __name__ == "__main__":
